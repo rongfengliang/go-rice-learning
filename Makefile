@@ -1,4 +1,4 @@
-build-app: clean make-dir generate build-mac build-linux build-windows
+build-app: clean make-dir generate build-mac build-linux build-windows docker-build
 clean:
 	rm -rf build/* && rm -rf  rice-box.go
 generate:
@@ -11,3 +11,5 @@ build-linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/linux 
 build-windows:
 	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o build/windows
+docker-build:
+	docker build -t dalongrong/go-rice-app .
